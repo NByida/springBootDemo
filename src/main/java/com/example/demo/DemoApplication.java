@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -14,11 +15,13 @@ public class DemoApplication {
     @Autowired
     PoetryService poetryService;
 
-    @RequestMapping("/")
+    @RequestMapping("/name/{name}")
     @ResponseBody
-    String home() {
-        return (poetryService.getPoetry("山行")).toString();
+    String home(@PathVariable String name ) {
+        return (poetryService.getLikePoetry(name));
     }
+
+
 
 
     @RequestMapping("/index")
