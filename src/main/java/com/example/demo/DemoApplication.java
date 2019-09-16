@@ -31,6 +31,17 @@ public class DemoApplication {
         return poetryService.getLikePoetry(name,pageRequest);
     }
 
+    @ResponseBody
+    @RequestMapping("/all/{page}")
+    Object all(@PathVariable int page ) {
+        PageRequest pageRequest=new PageRequest();
+        pageRequest.setPageNum(page);
+        pageRequest.setPageSize(10);
+        return poetryService.getAllPoetry(pageRequest);
+    }
+
+
+
 
 
 

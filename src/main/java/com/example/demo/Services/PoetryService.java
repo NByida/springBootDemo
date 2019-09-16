@@ -32,5 +32,15 @@ public class PoetryService {
         return result;
     }
 
+    public PageInfo<Poetry> getAllPoetry(PageRequest pageRequest){
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Poetry> list=poetryDao.getAllPoetry();
+        PageInfo result=new PageInfo(list);
+        return result;
+    }
+
+
 
 }
