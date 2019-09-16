@@ -2,8 +2,12 @@ package com.example.demo.Services;
 
 import com.example.demo.Dao.PoetryDao;
 import com.example.demo.Entity.Poetry;
+import com.example.demo.Utils.PageRequest;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -19,15 +23,12 @@ public class PoetryService {
         return poetryDao.findPoetryByName(name);
     }
 
-    public String getLikePoetry(String name){
-        ArrayList<Poetry> list=poetryDao.findPoetryByNameLike(name);
-        String result="共找到"+list.size()+"条数据</br>";
-        Iterator iterator=list.iterator();
-        int index=1;
-        while (iterator.hasNext()){
-            result=result+(index++)+((Poetry)iterator.next()).getName()+"</br>";
-        }
-        result="<html>"+result+"</html>";
+    public PageInfo<Poetry> getLikePoetry(String name, PageRequest pageRequest){
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Poetry> list=poetryDao.findPoetryByNameLike(name);
+        PageInfo result=new PageInfo(list);
         return result;
     }
 

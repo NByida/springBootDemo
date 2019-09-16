@@ -9,7 +9,7 @@ public class Poetry {
     String name;
     String dynasty;
     String poet;
-    long poetId;
+    long id;
 
     public Poetry() {
     }
@@ -25,7 +25,7 @@ public class Poetry {
                 ", name='" + name + '\'' +
                 ", dynasty='" + dynasty + '\'' +
                 ", poet='" + poet + '\'' +
-                ", poetId=" + poetId +
+                ", poetId=" + id +
                 '}';
     }
 
@@ -94,10 +94,10 @@ public class Poetry {
     }
 
     public long getPoetId() {
-        return poetId;
+        return id;
     }
 
     public void setPoetId(long poetId) {
-        this.poetId = poetId;
+        this.id = poetId;
     }
 }
