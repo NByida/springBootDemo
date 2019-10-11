@@ -61,6 +61,11 @@
             <artifactId>pagehelper</artifactId>
             <version>5.0.0</version>
         </dependency>
+<!--        静态资源文件访问-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
 
     </dependencies>
 
