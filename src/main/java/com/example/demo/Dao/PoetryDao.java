@@ -1,6 +1,7 @@
 package com.example.demo.Dao;
 
 import com.example.demo.Entity.Poetry;
+import com.example.demo.Entity.Tag;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -26,8 +27,16 @@ public interface PoetryDao {
     @Select("SELECT distinct * FROM Poetry WHERE content like CONCAT('%',#{query},'%') OR poet like CONCAT('%',#{query},'%') OR name like CONCAT('%',#{query},'%') ")
     List<Poetry> findAll(@Param("query") String query);
 
-    @Select("SELECT * FROM Poetry")
+    @Select("SELECT * FROM Poetry order by rand()")
     List<Poetry> getAllPoetry();
 
+    @Select("SELECT * FROM Tag WHERE petoryid = #{id}")
+    List<Tag> getPoetryTag(@Param("id") String id);
+
+    @Select("Select * from poetry where id=any(SELECT petoryid FROM Tag where tag = #{tagName})")
+    List<Poetry> getPoetryByTagName(@Param("tagName") String tagName);
+
+    @Select("Select * from poetry where id=any(SELECT petoryid FROM Tag where tag = #{tagName}  AND petoryid !=  #{id}) limit 3")
+    List<Poetry> getPoetryByTagName3(@Param("tagName") String tagName,String id);
 
 }

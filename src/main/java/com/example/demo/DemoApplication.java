@@ -68,13 +68,39 @@ public class DemoApplication {
         return poetryService.getAllLike(name,pageRequest);
     }
 
-
-
-    @RequestMapping("/index")
     @ResponseBody
-    String index() {
-        return "<html> </html>";
+    @RequestMapping("/poetry/{tagId}")
+    Object getAllLike(@PathVariable String tagId ) {
+        PageRequest pageRequest=new PageRequest();
+        pageRequest.setPageNum(1);
+        pageRequest.setPageSize(10);
+        return poetryService.getPoetryTags(pageRequest,tagId);
     }
+
+    @ResponseBody
+    @RequestMapping("/tag/{tagId}/{page}")
+    Object getPoetryUnderTag(@PathVariable String tagId,@PathVariable int page  ) {
+        PageRequest pageRequest=new PageRequest();
+        pageRequest.setPageNum(page);
+        pageRequest.setPageSize(10);
+        return poetryService.getPoetryUnderTags(pageRequest,tagId);
+    }
+
+
+
+    @ResponseBody
+    @RequestMapping("/recommend/{Id}/{page}")
+    Object getRecomendById(@PathVariable String Id,@PathVariable int page) {
+        PageRequest pageRequest=new PageRequest();
+        pageRequest.setPageNum(page);
+        pageRequest.setPageSize(10);
+        return poetryService.getRecommend(pageRequest,Id);
+    }
+
+
+
+
+
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);

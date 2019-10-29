@@ -10,6 +10,15 @@ public class Poetry {
     String dynasty;
     String poet;
     long id;
+    String tag;
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
 
     public Poetry() {
     }
