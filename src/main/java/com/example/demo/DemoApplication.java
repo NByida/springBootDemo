@@ -77,17 +77,27 @@ public class DemoApplication {
         return poetryService.getPoetryTags(pageRequest,tagId);
     }
 
+    /**
+     * 获取tag下面的诗词
+     * @param tagName
+     * @param page
+     * @return
+     */
     @ResponseBody
-    @RequestMapping("/tag/{tagId}/{page}")
-    Object getPoetryUnderTag(@PathVariable String tagId,@PathVariable int page  ) {
+    @RequestMapping("/tag/{tagName}/{page}")
+    Object getPoetryUnderTag(@PathVariable String tagName,@PathVariable int page  ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
         pageRequest.setPageSize(10);
-        return poetryService.getPoetryUnderTags(pageRequest,tagId);
+        return poetryService.getPoetryUnderTags(pageRequest,tagName);
     }
 
-
-
+    /**
+     * 根据诗词tag推荐诗词，每个tag推荐三首
+     * @param Id
+     * @param page
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/recommend/{Id}/{page}")
     Object getRecomendById(@PathVariable String Id,@PathVariable int page) {
@@ -96,11 +106,6 @@ public class DemoApplication {
         pageRequest.setPageSize(10);
         return poetryService.getRecommend(pageRequest,Id);
     }
-
-
-
-
-
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);

@@ -36,7 +36,7 @@ public interface PoetryDao {
     @Select("Select * from poetry where id=any(SELECT petoryid FROM Tag where tag = #{tagName})")
     List<Poetry> getPoetryByTagName(@Param("tagName") String tagName);
 
-    @Select("Select * from poetry where id=any(SELECT petoryid FROM Tag where tag = #{tagName}  AND petoryid !=  #{id}) limit 3")
+    @Select("Select * from poetry where id=any(SELECT petoryid FROM Tag where tag = #{tagName}  AND petoryid !=  #{id} ) order by rand() limit 3")
     List<Poetry> getPoetryByTagName3(@Param("tagName") String tagName,String id);
 
 }
