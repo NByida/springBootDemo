@@ -11,23 +11,23 @@ import java.util.List;
 @Mapper
 public interface PoetryDao {
 
-    @Select("SELECT * FROM Poetry WHERE name = #{name}")
+    @Select("SELECT * FROM poetry WHERE name = #{name}")
     Poetry findPoetryByName(@Param("name") String name);
 
 
-    @Select("SELECT * FROM Poetry WHERE name like CONCAT('%',#{name},'%')")
+    @Select("SELECT * FROM poetry WHERE name like CONCAT('%',#{name},'%')")
     List<Poetry> findPoetryByNameLike(@Param("name") String name);
 
-    @Select("SELECT * FROM Poetry WHERE content like CONCAT('%',#{content},'%')")
+    @Select("SELECT * FROM poetry WHERE content like CONCAT('%',#{content},'%')")
     List<Poetry> findPoetryByContentLike(@Param("content") String content);
 
-    @Select("SELECT * FROM Poetry WHERE poet like CONCAT('%',#{Auth},'%')")
+    @Select("SELECT * FROM poetry WHERE poet like CONCAT('%',#{Auth},'%')")
     List<Poetry> findPoetryByAuthLike(@Param("Auth") String Auth);
 
-    @Select("SELECT distinct * FROM Poetry WHERE content like CONCAT('%',#{query},'%') OR poet like CONCAT('%',#{query},'%') OR name like CONCAT('%',#{query},'%') ")
+    @Select("SELECT distinct * FROM poetry WHERE content like CONCAT('%',#{query},'%') OR poet like CONCAT('%',#{query},'%') OR name like CONCAT('%',#{query},'%') ")
     List<Poetry> findAll(@Param("query") String query);
 
-    @Select("SELECT * FROM Poetry order by rand()")
+    @Select("SELECT * FROM poetry")
     List<Poetry> getAllPoetry();
 
     @Select("SELECT * FROM Tag WHERE petoryid = #{id}")

@@ -22,12 +22,14 @@ public class DemoApplication {
     @Autowired
     PoetryService poetryService;
 
+    private final int PAGE_SIZE=20;
+
     @ResponseBody
     @RequestMapping("/name/{name}/{page}")
     Object home(@PathVariable String name,@PathVariable int page ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getLikePoetry(name,pageRequest);
     }
 
@@ -36,7 +38,7 @@ public class DemoApplication {
     Object all(@PathVariable int page ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getAllPoetry(pageRequest);
     }
 
@@ -46,7 +48,7 @@ public class DemoApplication {
     Object auth(@PathVariable String name,@PathVariable int page ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getPoetLikePoetry(name,pageRequest);
     }
 
@@ -55,7 +57,7 @@ public class DemoApplication {
     Object content(@PathVariable String name,@PathVariable int page ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getContentLikePoetry(name,pageRequest);
     }
 
@@ -64,7 +66,7 @@ public class DemoApplication {
     Object getAllLike(@PathVariable String name,@PathVariable int page ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getAllLike(name,pageRequest);
     }
 
@@ -73,7 +75,7 @@ public class DemoApplication {
     Object getAllLike(@PathVariable String tagId ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(1);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getPoetryTags(pageRequest,tagId);
     }
 
@@ -88,7 +90,7 @@ public class DemoApplication {
     Object getPoetryUnderTag(@PathVariable String tagName,@PathVariable int page  ) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getPoetryUnderTags(pageRequest,tagName);
     }
 
@@ -103,7 +105,7 @@ public class DemoApplication {
     Object getRecomendById(@PathVariable String Id,@PathVariable int page) {
         PageRequest pageRequest=new PageRequest();
         pageRequest.setPageNum(page);
-        pageRequest.setPageSize(10);
+        pageRequest.setPageSize(PAGE_SIZE);
         return poetryService.getRecommend(pageRequest,Id);
     }
 
