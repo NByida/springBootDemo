@@ -109,6 +109,21 @@ public class DemoApplication {
         return poetryService.getRecommend(pageRequest,Id);
     }
 
+    /**
+     * 获取所有的诗词标签
+     * @param page
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/tag/{page}")
+    Object getAllTags(@PathVariable int page) {
+        PageRequest pageRequest=new PageRequest();
+        pageRequest.setPageNum(page);
+        pageRequest.setPageSize(100);
+        return poetryService.getAllTags(pageRequest);
+    }
+
+
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
