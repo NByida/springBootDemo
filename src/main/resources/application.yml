@@ -10,9 +10,12 @@ spring:
 
   datasource:
 #    ssl链接失败添加?useSSL=true
-    url: jdbc:mysql://127.0.0.1:3306/new_schema?serverTimezone=UTC&useSSL=true
+
+#    url: jdbc:mysql://127.0.0.1:3306/new_schema?serverTimezone=UTC&useSSL=true
+    url: jdbc:mysql://34.80.242.198:3306/new_schema?serverTimezone=UTC&useSSL=true
     username: root
     password: root
+#    password: xuyimin520
     # pagehelper
 
 

@@ -144,4 +144,13 @@ public class PoetryService {
         return result;
     }
 
+    public PageInfo<Tag> getAllTags(PageRequest pageRequest){
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        List<Tag> list=poetryDao.getAllTag();
+        PageInfo result=new PageInfo(list);
+        return result;
+    }
+
 }
